@@ -1,0 +1,123 @@
+AddLocationForm: 
+
+<AddLocationForm>:
+	orientation: "vertical"
+	droga: length
+	przewy: elev
+	predk: veloc
+	czas: time
+	ascent: asc
+	descent: desc
+	wysmin: hmin
+	wysmax: hmax
+	filepath: filepath
+	my_map: map
+	BoxLayout:
+		height: "40dp"
+		size_hint_y: None
+		Label:
+			size_hint_x: 25
+			text: "Wczytany plik:"
+		Label:
+			size_hint_x: 25
+			id: filepath
+			text: "<brak pliku>"
+	BoxLayout:
+		height: "40dp"
+		size_hint_y: None
+		Button:
+			size_hint_x: 25
+			text: "Wczytaj plik gpx"
+			on_press: root.show_load()
+		Button:
+			size_hint_x: 25
+			text: "Analizuj wczytany plik"
+			on_press: root.oblicz_param()			
+	BoxLayout:
+		height: "40dp"
+		size_hint_y: None
+		Label:
+			size_hint_x: 25
+			text: "Droga"
+		Label:
+			size_hint_x: 25
+			text: "Przewyzszenie"
+		Label:
+			size_hint_x: 25
+			text: "Srednia\npredkosc"
+		Label:
+			size_hint_x: 25
+			text: "Czas"
+		Label:
+			size_hint_x: 25
+			text: "Podejscia"
+		Label:
+			size_hint_x: 25
+			text: "Zejscia"
+		Label:
+			size_hint_x: 25
+			text: "Wysokosc\nmin"
+		Label:
+			size_hint_x: 25
+			text: "Wysokosc\nmax"
+	BoxLayout:
+		height: "40dp"
+		size_hint_y: None
+		Label:
+			size_hint_x: 25
+			text: "Brak danych"
+			id: length
+		Label:
+			size_hint_x: 25
+			text: "Brak danych"
+			id: elev
+		Label:
+			size_hint_x: 25
+			text: "Brak danych"
+			id: veloc
+		Label:
+			size_hint_x: 25
+			text: "Brak danych"
+			id: time
+		Label:
+			size_hint_x: 25
+			text: "Brak danych"
+			id: asc
+		Label:
+			size_hint_x: 25
+			text: "Brak danych"
+			id: desc
+		Label:
+			size_hint_x: 25
+			text: "Brak danych"
+			id: hmin
+		Label:
+			size_hint_x: 25
+			text: "Brak danych"
+			id: hmax
+	BoxLayout:
+		orientation: "vertical"
+		MapView:
+			lat: 0
+			lon: 0
+			zoom: 1
+			id: map 
+			
+			
+			
+<LoadDialog>:
+	BoxLayout:
+		orientation: "vertical"
+		FileChooserListView:
+			id: filechooser
+			path: './'
+
+		BoxLayout:
+			size_hint_y: None
+			height: 30
+			Button:
+				text: "Anuluj"
+				on_release: root.cancel()
+			Button:
+				text: "Wczytaj"
+				on_release: root.load(filechooser.path, filechooser.selection)
